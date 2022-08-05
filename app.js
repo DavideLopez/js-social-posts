@@ -92,3 +92,31 @@ for (let i = 0; i< posts.length; i++){
             </div>
         </div>`
 }
+
+   //AGGIUNGIAMO CONTATORE DI LIKE
+const postlike = []
+
+
+for(i=1; 1 <= posts.length; i++) {
+    let like = document.querySelector("[data-postid='"+i+"']");
+
+    let counterLikes = document.getElementById('like-counter-'+i+'');
+    let numLikes = parseInt(document.getElementById('like-counter-'+i+'').textContent);
+
+     //AGGIUNGI E TOGLI LIKE
+    like.addEventListener('click', function(){
+        if(!postlike.includes(counterLikes)){
+            this.classList.add('like-button--liked');
+            counterLikes.innerHTML = numLikes + 1;
+            postlike.push(counterLikes);
+        }else{
+            this.classList.remove('like-button--liked'),
+            counterLikes.innerHTML = numLikes + 1 -1;
+            for(let ii = 0; ii < postlike.length; ii++){ 
+                if ( postlike[ii] === counterLikes) {
+                postlike.splice(counterLikes); 
+                }
+            }
+        }
+    }) 
+}
